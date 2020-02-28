@@ -1,8 +1,11 @@
 package com.soz;
 
+
+import com.soz.netty.ChatServerApplication;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.util.unit.DataSize;
 
@@ -11,8 +14,11 @@ import javax.servlet.MultipartConfigElement;
 @SpringBootApplication
 public class FgpApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(FgpApplication.class, args);
+    public static void main(String[] args) throws Exception {
+
+        ConfigurableApplicationContext context = SpringApplication.run(FgpApplication.class, args);
+        ChatServerApplication chatServer = context.getBean(ChatServerApplication.class);
+        chatServer.start();
     }
 
 

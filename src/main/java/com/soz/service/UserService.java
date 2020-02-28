@@ -18,4 +18,8 @@ public interface UserService {
 
     public String showPhoto(String name);
 
+    void update(String name,String password,String email,Integer id);
+
+    int checkId(String name);
+
 }

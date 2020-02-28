@@ -46,4 +46,15 @@ public class UserServiceImpl implements UserService {
         String picture = userDao.showPhoto(name);
         return picture;
     }
+
+    @Override
+    public void update(String name, String password, String email,Integer id) {
+        userDao.update(name,password,email,id);
+    }
+
+    @Override
+    public int checkId(String name) {
+        int id = userDao.chechId(name);
+        return id;
+    }
 }

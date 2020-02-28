@@ -45,6 +45,8 @@ public class LoginController {
             return "redirect:/login/login";
         }
         if (check){
+            int id = userService.checkId(name);
+            session.setAttribute("id",id);
             session.setAttribute("name",name);
             session.setAttribute("password",password);
             session.setAttribute("picture",test.getPicture());

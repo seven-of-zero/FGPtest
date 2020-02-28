@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import sun.security.timestamp.TSRequest;
 
 import java.util.List;
 
@@ -28,4 +29,10 @@ public interface UserDao {
 
     @Select("select picture from tb_userinfo where nickname = #{name}")
     public String showPhoto(String name);
+
+    @Update("update tb_userinfo set nickname = #{name},password=#{password},email=#{email} where id=#{id}")
+    void update(String name, String password,String email,Integer id);
+
+    @Select("select id from tb_userinfo where nickname=#{name}")
+    int chechId(String name);
 }

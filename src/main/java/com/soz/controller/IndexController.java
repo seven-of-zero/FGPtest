@@ -13,10 +13,9 @@ public class IndexController {
     @RequestMapping("/")
     public String index(HttpSession session, Model model){
         String name = (String)session.getAttribute("name");
-        String password = (String)session.getAttribute("password");
         String picture = (String)session.getAttribute("picture");
-        String authority = (String)session.getAttribute("authority");
         model.addAttribute("name",name);
+        model.addAttribute("url",picture);
         return "index";
     }
 

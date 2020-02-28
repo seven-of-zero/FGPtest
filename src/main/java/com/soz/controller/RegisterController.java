@@ -27,7 +27,7 @@ public class RegisterController {
 
     @RequestMapping("/reciveUserName")
     @ResponseBody
-    public JsonResult reciveUserName(String name){
+    public String reciveUserName(String name){
         int count = userService.findName(name);
         String msg = "";
         if (count>0){
@@ -35,7 +35,7 @@ public class RegisterController {
         }else {
             msg = "OK";
         }
-        return new JsonResult(msg);
+        return msg;
     }
 
     @RequestMapping("/reciveRegister")
@@ -46,6 +46,8 @@ public class RegisterController {
         user.setPicture("http://127.0.0.1:8080/upload/2020-02-25/2020-02-25-0ab4e5c1-f45c-42fd-ad0b-337f1fad7ff0.jpg");//默认头像
         user.setAuthority("normal");//默认为普通用户
         userService.add(user);
+        int id = userService.checkId(name);
+        session.setAttribute("id",id);
         session.setAttribute("name",name);
         session.setAttribute("password",password);
         session.setAttribute("picture",user.getPicture());
