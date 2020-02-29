@@ -21,13 +21,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void add(User user) {
-        userDao.add(user);
+    public void add(String name,String password,String picture,String authority) {
+
+        userDao.add(name,password,picture,authority);
     }
 
     @Override
-    public List<User> findAll(String name) {
-        return null;
+    public User findAll(String name) {
+        User user = userDao.findAll(name);
+        return user;
     }
 
     @Override

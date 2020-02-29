@@ -40,19 +40,16 @@ public class RegisterController {
 
     @RequestMapping("/reciveRegister")
     public String reciveRegister(@RequestParam(name = "uname") String name, @RequestParam(name = "upwd") String password, HttpSession session, Model model){
-        User user = new User();
-        user.setName(name);
-        user.setPassword(password);
-        user.setPicture("http://127.0.0.1:8080/upload/2020-02-25/2020-02-25-0ab4e5c1-f45c-42fd-ad0b-337f1fad7ff0.jpg");//默认头像
-        user.setAuthority("normal");//默认为普通用户
-        userService.add(user);
+        String picture = "http://127.0.0.1:8080/upload/2020-02-25/2020-02-25-0ab4e5c1-f45c-42fd-ad0b-337f1fad7ff0.jpg";//默认头像
+        String authority = "normal";//默认为普通用户
+        userService.add(name,password,picture,authority);
         int id = userService.checkId(name);
         session.setAttribute("id",id);
         session.setAttribute("name",name);
         session.setAttribute("password",password);
-        session.setAttribute("picture",user.getPicture());
-        session.setAttribute("authority",user.getAuthority());
-        model.addAttribute("user",user);
+        session.setAttribute("picture",picture);
+        session.setAttribute("authority",authority);
+        model.addAttribute("name",name);
         return "next";
     }
 

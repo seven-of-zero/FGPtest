@@ -8,9 +8,9 @@ public interface UserService {
 
     public int findName(String name);
 
-    public void add(User user);
+    public void add(String name,String password,String picture,String authority);
 
-    public List<User> findAll(String name);
+    public User findAll(String name);
 
     public void addPhoto(String url,String name);
 

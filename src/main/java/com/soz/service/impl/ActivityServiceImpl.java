@@ -6,6 +6,7 @@ import com.soz.service.ActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -15,8 +16,8 @@ public class ActivityServiceImpl implements ActivityService {
     private ActivityDao activityDao;
 
     @Override
-    public void add(String title, String content, String publisher) {
-        activityDao.add(title,content,publisher);
+    public void add(String title, String content, Date date,String publisher) {
+        activityDao.add(title,content,date,publisher);
     }
 
     @Override
@@ -25,14 +26,14 @@ public class ActivityServiceImpl implements ActivityService {
     }
 
     @Override
-    public List<ActPojo> show(Integer id) {
-        List<ActPojo> show = activityDao.show(id);
+    public ActPojo show(Integer id) {
+        ActPojo show = activityDao.show(id);
         return show;
     }
 
     @Override
-    public List<String> showTitle() {
-        List<String> title = activityDao.showTitle();
-        return title;
+    public List<ActPojo> showTitle() {
+        List<ActPojo> actPojos = activityDao.showTitle();
+        return actPojos;
     }
 }

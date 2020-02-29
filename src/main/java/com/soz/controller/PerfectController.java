@@ -47,7 +47,7 @@ public class PerfectController {
                          @RequestParam(name = "email") String email,
                          HttpSession session){
         Integer id = (Integer) session.getAttribute("id");
-
+        userService.update(name,password,email,id);
         return "redirect:/";
     }
 

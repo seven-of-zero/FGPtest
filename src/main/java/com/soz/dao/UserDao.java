@@ -15,14 +15,14 @@ public interface UserDao {
     @Select("select count(*) from tb_userinfo where nickname=#{name}")
     public int findName(String name);
 
-    @Insert("insert into tb_userinfo (nickname,password) values (#{name},#{password})")
-    public void add(User user);
+    @Insert("insert into tb_userinfo (nickname,password,picture,authority) values (#{name},#{password},#{picture},#{authority})")
+    public void add(String name,String password,String picture,String authority);
 
     @Update("update tb_userinfo set picture = #{url} where nickname = #{name}")
     public void addPhoto(String url,String name);
 
     @Select("select * from tb_userinfo where nickname = #{name}")
-    public List<User> findAll(String name);
+    public User findAll(String name);
 
     @Select("select password from tb_userinfo where nickname = #{name}")
     public User checkLogin(String name);

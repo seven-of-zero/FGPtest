@@ -1,10 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>发布-kingkiller</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="css/community.css">
+    <script src="/js/jquery-3.4.1.js" type="application/javascript"></script>
+    <script src="/js/bootstrap.js" type="application/javascript"></script>
 </head>
 <body>
+<div th:insert="~{navigation :: nav}"></div>
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>发起</h2>
+            <hr>
+            <form action="/publish" method="post">
+                <div class="form-group">
+                    <label for="title">问题标题：</label>
+                    <input type="text" class="form-control"  id="title" name="title" placeholder="问题标题">
+                </div>
+                <div class="form-group">
+                    <label for="description">问题补充（必填）：</label>
+                    <textarea name="description"  id="description" class="form-control" cols="30" rows="10"></textarea>
+                </div>
+                <button type="submit" class="btn btn-success btn-publish">发布</button>
+            </form>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <h3>活动发起指南</h3><br>
+            • 活动标题: 请用精简的语言描述您发布的活动，不超过25字<br>
+            <br>
+            • 活动补充: 详细补充您的活动内容，并确保活动述清晰直观, 并提供一些相关的资料：
+            <br>
+            <br>
+            服务器运行环境信息；
+            <br>
+            软件版本；
+            <br>
+            问题发生的上下文信息；
+            <br>
+            可以完整复现问题的代码（如可直接运行于 Kibana Console 的复现流程）；
+            <br>
+            补充完整的异常和错误信息；
+            <br>
+            注意阅读格式友好，代码和异常信息请用代码标签格式化张贴；
+            <br>
+            <br>
 
+        </div>
+    </div>
+</div>
 </body>
 </html>

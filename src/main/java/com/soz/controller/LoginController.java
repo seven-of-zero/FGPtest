@@ -32,7 +32,7 @@ public class LoginController {
         String name = request.getParameter("uname");
         String password = request.getParameter("upwd");
         String msg = "";
-        User test = userService.checkLogin(name);
+        User test = userService.findAll(name);
         boolean check;
         if (test!=null){
             if (test.getPassword().equals(password)){
@@ -45,10 +45,11 @@ public class LoginController {
             return "redirect:/login/login";
         }
         if (check){
-            int id = userService.checkId(name);
-            session.setAttribute("id",id);
+            session.setAttribute("id",test.getId());
+            System.out.println(test.getId());
             session.setAttribute("name",name);
             session.setAttribute("password",password);
+            System.out.println(test.getPicture());
             session.setAttribute("picture",test.getPicture());
             session.setAttribute("authority",test.getAuthority());
             return "redirect:/";
