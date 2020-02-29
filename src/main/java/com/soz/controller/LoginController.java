@@ -15,6 +15,8 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/login")
 public class LoginController {
 
+
+
     @Autowired
     private UserService userService;
 
@@ -58,6 +60,12 @@ public class LoginController {
             return "redirect:/login/login";
         }
 
+    }
+
+    @RequestMapping("/loginout")
+    public String loginOut(HttpSession session){
+        session.invalidate();
+        return "redirect:/";
     }
 
 }

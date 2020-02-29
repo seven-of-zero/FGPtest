@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+    <!-- Bootstrap core CSS -->
+    <link  rel="stylesheet" href="/css/bootstrap.css">
+    <!-- Custom styles for this template -->
+    <link href="http://getbootstrap.com/docs/4.1/examples/album/album.css" rel="stylesheet">
+    <title>manage</title>
+</head>
+<body>
+<main role="main">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Album example</h1>
+            <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
+            <p>
+                <a href="/perfect/addDetail" class="btn btn-primary my-2">个人中心</a>
+                <a href="/" class="btn btn-secondary my-2">回到主页</a>
+            </p>
+        </div>
+    </section>
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div>
+                <div class="row" th:each="pojo:${pojos}">
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                            <img class="card-img-top" src="/img/test.jpg" height="">
+                            <div class="card-body">
+                                <a th:href="@{'/test/'+${pojo.id}}"><p class="card-text" th:text="${pojo.title}"></p></a>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary"><a th:href="@{'/delete/'+${pojo.id}}">删除</a></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="js/jquery-3.4.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="/js/bootstrap.js"></script>
+</body>
+</html>
