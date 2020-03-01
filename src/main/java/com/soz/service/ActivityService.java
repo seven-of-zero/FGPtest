@@ -15,4 +15,6 @@ public interface ActivityService {
 
     List<ActPojo> showTitle();
 
+    List<ActPojo> showDelete(String name);
+
 }

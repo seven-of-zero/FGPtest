@@ -36,4 +36,10 @@ public class ActivityServiceImpl implements ActivityService {
         List<ActPojo> actPojos = activityDao.showTitle();
         return actPojos;
     }
+
+    @Override
+    public List<ActPojo> showDelete(String name) {
+        List<ActPojo> actPojos = activityDao.showDelete(name);
+        return actPojos;
+    }
 }

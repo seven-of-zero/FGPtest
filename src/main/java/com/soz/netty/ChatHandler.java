@@ -25,7 +25,7 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
             if (channel != ichannel){
                 channel.writeAndFlush(new TextWebSocketFrame(ctx.channel().remoteAddress()+ content));
             }else {
-                channel.writeAndFlush(new TextWebSocketFrame("我自己"+ content));
+                //channel.writeAndFlush(new TextWebSocketFrame("我自己"+ content));
             }
         }
     }

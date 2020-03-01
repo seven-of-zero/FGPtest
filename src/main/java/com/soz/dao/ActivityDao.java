@@ -25,4 +25,7 @@ public interface ActivityDao {
     @Select("select * from tb_activity")
     List<ActPojo> showTitle();
 
+    @Select("select * from tb_activity where publisher=#{name}")
+    List<ActPojo> showDelete(String name);
+
 }
