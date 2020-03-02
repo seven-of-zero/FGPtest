@@ -39,7 +39,9 @@ public class RegisterController {
     }
 
     @RequestMapping("/reciveRegister")
-    public String reciveRegister(@RequestParam(name = "uname") String name, @RequestParam(name = "upwd") String password, HttpSession session, Model model){
+    public String reciveRegister(@RequestParam(name = "uname") String name,
+                                 @RequestParam(name = "upwd") String password,
+                                 HttpSession session, Model model){
         String picture = "http://127.0.0.1:8080/upload/2020-02-25/2020-02-25-0ab4e5c1-f45c-42fd-ad0b-337f1fad7ff0.jpg";//默认头像
         String authority = "normal";//默认为普通用户
         userService.add(name,password,picture,authority);

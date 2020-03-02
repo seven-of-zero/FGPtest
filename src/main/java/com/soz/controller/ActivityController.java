@@ -24,8 +24,8 @@ public class ActivityController {
 
     @RequestMapping("/activity")
     public String show(Model model){
-        List<ActPojo> pojos = activityService.showTitle();
-        model.addAttribute("pojos",pojos);
+        List<ActPojo> pojos = activityService.showTitle();//将所有的活动都放在一个List列表中集中展示
+        model.addAttribute("pojos",pojos);//通过model携带参数到前端页面展示
         return "activity";
     }
 
@@ -34,9 +34,6 @@ public class ActivityController {
     public String test(@PathVariable(name = "id")Integer id, Model model){
         ActPojo act = activityService.show(id);
         List<Comment> comments = commentService.show(id);
-//        for (Comment comment : comments) {
-//            System.out.println(comment.getComment());
-//        }
         int size = comments.size();
         model.addAttribute("size",size);
         model.addAttribute("list",comments);
