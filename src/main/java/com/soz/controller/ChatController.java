@@ -14,6 +14,7 @@ public class ChatController {
     public String chat(HttpSession session, Model model){
         String name = (String)session.getAttribute("name");
         if (name!=null){
+            model.addAttribute("name",name);
             return "testChat";
         }else {
             model.addAttribute("msg","请先登录");

@@ -1,5 +1,5 @@
 <!dtype html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>Chat</title>
@@ -31,6 +31,7 @@
                 <div class="chat-service-title">
                     <p class="chat-service-name">SOZ</p>
                     <p class="chat-service-detail">ChatRoom</p>
+                    <p th:text="${name}"></p>
                 </div>
             </div>
         </div>
@@ -54,15 +55,18 @@
     </div>
 </div>
 <a href="/">Home</a>
-<script>
+<script th:inline="javascript">
+    var username = [[${name}]];
+    console.log(username);
     var socket;
     if (!window.WebSocket) {
         window.WebSocket = window.MozWebSocket;
     }
     if (window.WebSocket) {
-        socket = new WebSocket("ws://39.97.116.173:8080/websocket");
+        socket = new WebSocket("ws://39.97.116.173:8888/websocket");
         socket.onmessage = function(event) {
-            getServiceText(event.data)
+            var str = event.data.split('|');
+            getServiceText(str[0],str[1]);
 
         };
         socket.onopen = function(event) {
@@ -178,7 +182,7 @@
     btnClose.addEventListener('click',closeChat)
 
     /*创建新消息框*/
-    function createInfo(name,value)
+    function createInfo(name,value,uname)
     {
         var chatTime=new Date();
         chatTime=chatTime.toLocaleTimeString();
@@ -192,7 +196,7 @@
         nodeSpan.classList.add('chat-'+name+'-text','chat-text');
         nodeTime.classList.add('chat-time');
         nodeSpan.innerHTML =value;
-        nodeTime.innerHTML=chatTime;
+        nodeTime.innerHTML=chatTime+"用户:"+uname;
         nodeP.appendChild(nodeTime);
         nodeP.appendChild(nodeSpan);
         chatContain.appendChild(nodeP);
@@ -236,7 +240,7 @@
             else
             {
                 e.preventDefault();
-                createInfo(type,Input.value);
+                createInfo(type,Input.value,username);
                 submityouText(Input.value);
                 Input.value = null;
                 Input.focus();
@@ -255,7 +259,7 @@
 
         if(chatInput.value!='')
         {
-            createInfo('you',chatInput.value);
+            createInfo('you',chatInput.value,username);
             submityouText(chatInput.value);
             chatInput.value = null;
             chatInput.focus();
@@ -333,14 +337,14 @@
         }
         if (socket.readyState == WebSocket.OPEN) {
             //var message = document.getElementById("message-to-send").value();
-            socket.send(text);
+            socket.send(text+"|"+username);
         } else {
             alert("连接没有开启.");
         }
     }
 
-    function getServiceText(data) {/*已定义后台消息框*/
-        createInfo('service',data);
+    function getServiceText(data,uname) {/*已定义后台消息框*/
+        createInfo('service',data,uname);
     }
 
 </script>
