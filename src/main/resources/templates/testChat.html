@@ -63,7 +63,7 @@
         window.WebSocket = window.MozWebSocket;
     }
     if (window.WebSocket) {
-        socket = new WebSocket("ws://39.97.116.173:8888/websocket");
+        socket = new WebSocket("ws://127.0.0.1:8888/websocket");
         socket.onmessage = function(event) {
             var str = event.data.split('|');
             getServiceText(str[0],str[1]);

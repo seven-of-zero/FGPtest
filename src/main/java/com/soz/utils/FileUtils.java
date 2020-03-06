@@ -23,6 +23,7 @@ public class FileUtils {
                         if (typeImg[i].equals(type.toLowerCase())){
                             booIsType = true;
                         }
+
                     }
                     //判断类型是否符合规定
                     if (booIsType){
